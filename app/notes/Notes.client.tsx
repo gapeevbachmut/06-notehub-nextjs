@@ -29,8 +29,9 @@ export default function NotesClient() {
   }, 500);
 
   // Завантаження при першому рендері
-  const { data, isSuccess, isLoading } = useQuery({
+  const { data, isSuccess, isLoading, isError } = useQuery({
     queryKey: ['notes', searchQuery, currentPage],
+
     queryFn: () => fetchNotes(searchQuery, currentPage, perPage),
     placeholderData: keepPreviousData, //  дані відмалюються після запиту
   });
@@ -47,20 +48,30 @@ export default function NotesClient() {
         <header className={css.toolbar}>
           <SearchBox onChange={updateSearchQuery} />
 
-          {isSuccess && data && data.notes.length > 0 ? (
+          {/* //////////////////////////////// */}
+          {/* {isLoading && <p>Завантаження...</p>}  */}
+
+          {/* {isError && <p>Сталася помилка при завантаженні нотаток.</p>} */}
+
+          {isSuccess && data && data.notes.length === 0 && (
+            <p>Нотаток немає. Додайте першу!</p>
+          )}
+          {/* /////////////////////////////////////// */}
+          {isSuccess && data && data.notes.length > 0 && (
             <Pagination
               pageCount={data.totalPages}
               onPageChange={handlePageChange}
               currentPage={currentPage}
             />
-          ) : (
-            !isLoading && <p>Немає нотаток за пошуковим запитом. </p>
           )}
 
           <button className={css.button} onClick={openModal}>
             Create note +
           </button>
         </header>
+
+        {isLoading && <p>Завантаження...</p>}
+        {isError && <p>Сталася помилка при завантаженні нотаток.</p>}
 
         {isSuccess && data && data.notes.length > 0 && (
           <NoteList notes={data.notes || []} />

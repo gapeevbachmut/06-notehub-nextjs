@@ -5,9 +5,10 @@ import {
 } from '@tanstack/react-query';
 import { fetchNoteById } from '@/app/lib/api';
 import NoteDetailsClient from './NoteDetails.client';
+import { type Note } from '@/app/types/note';
 
 type Props = {
-  params: Promise<{ id: string }>;
+  params: Promise<{ id: Note['id'] }>;
 };
 
 const NoteDetails = async ({ params }: Props) => {

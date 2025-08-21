@@ -15,7 +15,7 @@ export async function fetchNotes(
 ): Promise<NotesResponse> {
   const config = {
     params: {
-      search, // пошук - ?
+      search, // пошук -
       page, // сторінка
       perPage, // кількість на сторінці
     },
@@ -24,6 +24,9 @@ export async function fetchNotes(
       Authorization: `Bearer ${myKey}`,
     },
   };
+
+  await new Promise(r => setTimeout(r, 2000));
+
   const responce = await axios.get<NotesResponse>(`${API_URL}`, config);
   console.log(responce.data.notes);
   console.log('1', responce.data);
@@ -33,7 +36,7 @@ export async function fetchNotes(
 
 //  одна нотатка
 
-export const fetchNoteById = async (id: string): Promise<Note> => {
+export const fetchNoteById = async (id: Note['id']): Promise<Note> => {
   const responce = await axios.get<Note>(`${API_URL}/${id}`, {
     headers: {
       accept: 'application/json',

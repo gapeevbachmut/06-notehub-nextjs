@@ -4,9 +4,10 @@ import { useQuery } from '@tanstack/react-query';
 import { useParams } from 'next/navigation';
 import { fetchNoteById } from '@/app/lib/api';
 import css from './NoteDetails.page.module.css';
+import { type Note } from '@/app/types/note';
 
 const NoteDetailsClient = () => {
-  const { id } = useParams<{ id: string }>();
+  const { id } = useParams<{ id: Note['id'] }>();
 
   const {
     data: note,
