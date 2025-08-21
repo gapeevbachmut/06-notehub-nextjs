@@ -25,14 +25,15 @@ export async function fetchNotes(
     },
   };
   const responce = await axios.get<NotesResponse>(`${API_URL}`, config);
-  // console.log(responce.data.notes);
+  console.log(responce.data.notes);
+  console.log('1', responce.data);
 
   return responce.data;
 }
 
 //  одна нотатка
 
-export const getSingleNote = async (id: string) => {
+export const fetchNoteById = async (id: string) => {
   const responce = await axios.get<Note>(`/notes/${id}`);
   return responce.data;
 };

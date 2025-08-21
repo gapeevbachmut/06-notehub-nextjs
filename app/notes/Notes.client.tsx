@@ -13,9 +13,7 @@ import Pagination from '@/app/components/Pagination/Pagination';
 import Modal from '@/app/components/Modal/Modal';
 import NoteForm from '@/app/components/NoteForm/NoteForm';
 
-// import Loader from '../Loader/Loader';
-// import ErrorMessage from '../ErrorMessage/ErrorMessage';
-// import Link from 'next/link';
+// import NoteDetails from './[id]/page';
 
 export default function NotesClient() {
   const [searchQuery, setSearchQuery] = useState(''); // значення інпута
