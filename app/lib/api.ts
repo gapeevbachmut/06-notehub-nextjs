@@ -33,8 +33,13 @@ export async function fetchNotes(
 
 //  одна нотатка
 
-export const fetchNoteById = async (id: string) => {
-  const responce = await axios.get<Note>(`/notes/${id}`);
+export const fetchNoteById = async (id: string): Promise<Note> => {
+  const responce = await axios.get<Note>(`${API_URL}/${id}`, {
+    headers: {
+      accept: 'application/json',
+      Authorization: `Bearer ${myKey}`,
+    },
+  });
   return responce.data;
 };
 
