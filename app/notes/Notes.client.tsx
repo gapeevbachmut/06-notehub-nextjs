@@ -13,8 +13,6 @@ import Pagination from '@/app/components/Pagination/Pagination';
 import Modal from '@/app/components/Modal/Modal';
 import NoteForm from '@/app/components/NoteForm/NoteForm';
 
-// import NoteDetails from './[id]/page';
-
 export default function NotesClient() {
   const [searchQuery, setSearchQuery] = useState(''); // значення інпута
   const [currentPage, setCurrentPage] = useState(1); // pagination
@@ -31,7 +29,7 @@ export default function NotesClient() {
   }, 500);
 
   // Завантаження при першому рендері
-  const { data, isSuccess, isLoading, error, isError } = useQuery({
+  const { data, isSuccess, isLoading } = useQuery({
     queryKey: ['notes', searchQuery, currentPage],
     queryFn: () => fetchNotes(searchQuery, currentPage, perPage),
     placeholderData: keepPreviousData, //  дані відмалюються після запиту
@@ -48,8 +46,7 @@ export default function NotesClient() {
       <div className={css.app}>
         <header className={css.toolbar}>
           <SearchBox onChange={updateSearchQuery} />
-          {/* {isLoading && <Loader />} */}
-          {/* {isError && <ErrorMessage />} */}
+
           {isSuccess && data && data.notes.length > 0 ? (
             <Pagination
               pageCount={data.totalPages}
@@ -64,8 +61,6 @@ export default function NotesClient() {
             Create note +
           </button>
         </header>
-        {/* {isLoading && <p>Завантаження нотаток...</p>} */}
-        {/* {isError && <p>Помилка: {error.message}</p>} */}
 
         {isSuccess && data && data.notes.length > 0 && (
           <NoteList notes={data.notes || []} />
