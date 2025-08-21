@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useQuery, keepPreviousData } from '@tanstack/react-query';
 import { useDebouncedCallback } from 'use-debounce';
-import { fetchNotes } from '@/app/lib/api';
+import { fetchNotes } from '@/lib/api';
 import { Toaster } from 'react-hot-toast';
 
 import css from './NotesPage.module.css';

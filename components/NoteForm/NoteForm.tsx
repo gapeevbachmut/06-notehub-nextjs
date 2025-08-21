@@ -3,8 +3,8 @@ import { useId } from 'react';
 import { Field, Formik, Form, type FormikHelpers, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { createNote } from '@/app/lib/api';
-import { type CreateNoteType } from '../../app/types/note';
+import { createNote } from '@/lib/api';
+import { type CreateNoteType } from '../../types/note';
 import toast from 'react-hot-toast';
 
 const NoteSchema = Yup.object().shape({

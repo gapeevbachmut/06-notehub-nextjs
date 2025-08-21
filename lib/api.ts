@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { type Note, type CreateNoteType } from '@/app/types/note';
+import { type Note, type CreateNoteType } from '@/types/note';
 
 export interface NotesResponse {
   notes: Note[];
