@@ -5,10 +5,6 @@ import { useParams } from 'next/navigation';
 import { fetchNoteById } from '@/app/lib/api';
 import css from './NoteDetails.page.module.css';
 
-// interface Props {
-//   id: string;
-// }
-
 const NoteDetailsClient = () => {
   const { id } = useParams<{ id: string }>();
 
