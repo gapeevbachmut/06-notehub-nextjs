@@ -13,12 +13,16 @@ import Pagination from '@/components/Pagination/Pagination';
 import Modal from '@/components/Modal/Modal';
 import NoteForm from '@/components/NoteForm/NoteForm';
 
-export default function NotesClient() {
+interface PerPageProps {
+  perPage: number;
+}
+
+export default function NotesClient({ perPage }: PerPageProps) {
   const [searchQuery, setSearchQuery] = useState(''); // значення інпута
   const [currentPage, setCurrentPage] = useState(1); // pagination
   const [isModalOpen, setIsModalOpen] = useState(false); //модальне вікно
 
-  const perPage = 12;
+  // const perPage = 12;
 
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);

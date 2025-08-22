@@ -13,7 +13,7 @@ export default function Pagination({
   onPageChange,
 }: PaginationProps) {
   if (pageCount <= 1) {
-    return;
+    return null;
   }
   return (
     <>

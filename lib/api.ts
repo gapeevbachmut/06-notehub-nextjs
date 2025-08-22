@@ -25,7 +25,7 @@ export async function fetchNotes(
     },
   };
 
-  await new Promise(r => setTimeout(r, 2000));
+  // await new Promise(r => setTimeout(r, 2000));
 
   const responce = await axios.get<NotesResponse>(`${API_URL}`, config);
   console.log(responce.data.notes);

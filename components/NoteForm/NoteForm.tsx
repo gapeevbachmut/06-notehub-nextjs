@@ -40,22 +40,17 @@ export default function NoteForm({ onClose }: NoteFormProps) {
       toast.success('Нотатка створена!');
       onClose();
     },
+    onError: () => {
+      toast.error('Не вдалося створити нотатку!');
+    },
   });
 
   const handleSubmit = async (
     values: CreateNoteType,
     formikHelpers: FormikHelpers<CreateNoteType>
   ) => {
-    await mutation.mutateAsync(values, {
-      onSuccess: () => {
-        formikHelpers.resetForm(); //скидання форми
-        onClose();
-      },
-      onError: () => {
-        toast.error('Не вдалося створити нотатку!');
-      },
-    });
-
+    await mutation.mutateAsync(values);
+    formikHelpers.resetForm(); //скидання форми
     // console.log(values);
   };
 
