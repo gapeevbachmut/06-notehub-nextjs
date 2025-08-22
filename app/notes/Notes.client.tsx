@@ -34,10 +34,11 @@ export default function NotesClient({ perPage }: PerPageProps) {
 
   // Завантаження при першому рендері
   const { data, isSuccess, isLoading, isError } = useQuery({
-    queryKey: ['notes', searchQuery, currentPage],
+    queryKey: ['notes', { search: searchQuery, page: currentPage }],
 
     queryFn: () => fetchNotes(searchQuery, currentPage, perPage),
-    placeholderData: keepPreviousData, //  дані відмалюються після запиту
+    refetchOnMount: false, //не робити повторний запит, при монтуванні компонента клієнта
+    placeholderData: keepPreviousData, //  дані відмалюються після запиту - чи треба це тут ???
   });
 
   const handlePageChange = ({ selected }: { selected: number }) => {

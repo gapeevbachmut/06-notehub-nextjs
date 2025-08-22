@@ -40,7 +40,8 @@
     text-align: right;
 }
 
-.tag {
+.tag,
+.back {
     display: inline-block;
     padding: 4px 8px;
     font-size: 12px;
@@ -52,4 +53,5 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    text-align: center;
 }

@@ -6,25 +6,28 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import { fetchNotes } from '@/lib/api';
-// import { type Note } from '@/types/note';
 
 export const metadata: Metadata = {
   title: 'Notes',
   description: 'Notes page',
 };
-//
 
 export default async function NotesPage() {
   const queryClient = new QueryClient();
 
   //значення для першого завантаження
-  const search = '';
-  const page = 1;
+  // const search = '';
+  // const page = 1;
   const perPage = 12;
 
   await queryClient.prefetchQuery({
-    queryKey: ['notes', { search, page, perPage }],
-    queryFn: () => fetchNotes(search, page, perPage),
+    //ключі та функція повинні бути однаковими!!!
+
+    // queryKey: ['notes', { search, page, perPage }],
+    queryKey: ['notes', { search: '', page: 1 }],
+
+    // queryFn: () => fetchNotes(search, page, perPage), //   або так
+    queryFn: () => fetchNotes('', 1, perPage),
   });
 
   return (
